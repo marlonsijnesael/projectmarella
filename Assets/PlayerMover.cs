@@ -6,13 +6,18 @@ using UnityEngine;
 
 public class PlayerMover : MonoBehaviour {
   
-    private int currentLane = 0;
+    public int currentLane = 0;
     private int amountOflanes = 4;
-    
+    public int speed = 1;
     //inside class
     Vector2 firstPressPos;
     Vector2 secondPressPos;
     Vector2 currentSwipe;
+
+    private void Update() {
+        transform.position = new Vector3(transform.position.x + (speed * Time.deltaTime), transform.position.y, currentLane);    
+
+    }
 
     // Update is called once per frame
     void FixedUpdate() {
@@ -59,19 +64,20 @@ public class PlayerMover : MonoBehaviour {
                 if (currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f) {
                     if (currentLane > 0) {
                         currentLane--;
-                        transform.position = new Vector3(transform.position.x, transform.position.y, currentLane);
+                        //transform.position = new Vector3(transform.position.x, transform.position.y, currentLane);
+                        //Debug.Log("left swipe");
                         return;
                     }
-                    Debug.Log("left swipe");
                 }
                 //swipe right
                 if (currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f) {
                     if (currentLane < amountOflanes - 1) {
                         currentLane++;
-                        transform.position = new Vector3(transform.position.x, transform.position.y, currentLane);
+                        //transform.position = new Vector3(transform.position.x, transform.position.y, currentLane);
+                        //Debug.Log("right swipe");
                         return;
                     }
-                    Debug.Log("right swipe");
+                    
                 }
             }
         }

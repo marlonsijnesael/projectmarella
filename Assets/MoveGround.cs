@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class MoveGround : MonoBehaviour {
 
-    int moveSpeed = 6;
-	
-	// Update is called once per frame
-	void Update () {
-        transform.position = new Vector3(transform.position.x + moveSpeed * Time.deltaTime, transform.position.y, transform.position.z);
-        if (transform.position.x > 10) {
-            transform.position = new Vector3(- 10, transform.position.y, transform.position.z);
+    private void Update() {
+        if (SpawnGround.player.transform.position.x > transform.position.x + SpawnGround.lengthInUnits) {
+            Destroy(this.gameObject);
         }
-	}
+    }
+    // Update is called once per frame
+
 }
